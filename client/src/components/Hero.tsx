@@ -52,7 +52,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
         >
           <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-blue-400 via-cyan-400 to-violet-400 p-1 shadow-2xl overflow-hidden">
             <img
-              src="/manus-storage/1000282962_ad534422.png"
+              src="/images/cristian.jpg"
               alt="Cristian David González Pillimue"
               className="w-full h-full rounded-full object-cover"
             />

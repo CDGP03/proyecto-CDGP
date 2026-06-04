@@ -50,7 +50,7 @@ export default function Navbar({ onNavigate }: NavbarProps) {
           className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent"
           whileHover={{ scale: 1.05 }}
         >
-          CDG
+          CDGP
         </motion.div>
 
         {/* Desktop Navigation */}

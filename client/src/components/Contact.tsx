@@ -1,12 +1,11 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useState } from 'react';
-import { toast } from 'sonner';
-import { trpc } from '@/lib/trpc';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Contact() {
   const { ref, inView } = useInView({
@@ -15,10 +14,10 @@ export default function Contact() {
   });
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -27,28 +26,31 @@ export default function Contact() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
       [name]: value,
     }));
   };
-
-  const sendMessageMutation = trpc.contact.sendMessage.useMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const result = await sendMessageMutation.mutateAsync(formData);
-      if (result.success) {
-        toast.success(result.message);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      } else {
-        toast.error(result.message);
-      }
-    } catch (error: any) {
-      toast.error(error?.message || 'Error al enviar el mensaje. Intenta de nuevo.');
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      toast.success(
+        "¡Gracias por tu mensaje! Puedes contactarme directamente por correo o teléfono."
+      );
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch {
+      toast.error("Ocurrió un error.");
     } finally {
       setIsLoading(false);
     }
@@ -57,21 +59,21 @@ export default function Contact() {
   const contactInfo = [
     {
       icon: Mail,
-      label: 'Email',
-      value: 'cgonsalezpillimue@gmail.com',
-      href: 'mailto:cgonsalezpillimue@gmail.com',
+      label: "Email",
+      value: "cgonsalezpillimue@gmail.com",
+      href: "mailto:cgonsalezpillimue@gmail.com",
     },
     {
       icon: Phone,
-      label: 'Teléfono',
-      value: '+57 323 973 4707',
-      href: 'tel:+573239734707',
+      label: "Teléfono",
+      value: "+57 323 973 4707",
+      href: "tel:+573239734707",
     },
     {
       icon: MapPin,
-      label: 'Ubicación',
-      value: 'Cali, Colombia',
-      href: 'https://maps.google.com/?q=Cali,Colombia',
+      label: "Ubicación",
+      value: "Cali, Colombia",
+      href: "https://maps.google.com/?q=Cali,Colombia",
     },
   ];
 
@@ -108,15 +110,19 @@ export default function Contact() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
         >
           {/* Section Title */}
           <motion.div variants={itemVariants} className="mb-16 text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Ponte en <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">Contacto</span>
+              Ponte en{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400">
+                Contacto
+              </span>
             </h2>
             <p className="text-foreground/70 text-lg max-w-2xl mx-auto">
-              ¿Tienes un proyecto en mente o quieres colaborar? Me encantaría escucharte.
+              ¿Tienes un proyecto en mente o quieres colaborar? Me encantaría
+              escucharte.
             </p>
             <div className="w-20 h-1 bg-gradient-to-r from-blue-400 to-violet-400 rounded-full mx-auto mt-6" />
           </motion.div>
@@ -124,7 +130,9 @@ export default function Contact() {
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <motion.div variants={itemVariants} className="space-y-8">
-              <h3 className="text-2xl font-bold mb-8">Información de Contacto</h3>
+              <h3 className="text-2xl font-bold mb-8">
+                Información de Contacto
+              </h3>
 
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
@@ -141,7 +149,9 @@ export default function Contact() {
                       <Icon className="text-blue-400" size={24} />
                     </div>
                     <div>
-                      <p className="text-sm text-foreground/60 mb-1">{info.label}</p>
+                      <p className="text-sm text-foreground/60 mb-1">
+                        {info.label}
+                      </p>
                       <p className="text-lg font-semibold text-foreground group-hover:text-blue-400 transition-colors">
                         {info.value}
                       </p>
@@ -155,7 +165,10 @@ export default function Contact() {
             <motion.div variants={itemVariants}>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-foreground/80">
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-medium text-foreground/80"
+                  >
                     Nombre
                   </label>
                   <Input
@@ -170,7 +183,10 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-foreground/80">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-foreground/80"
+                  >
                     Email
                   </label>
                   <Input
@@ -186,7 +202,10 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-foreground/80">
+                  <label
+                    htmlFor="subject"
+                    className="text-sm font-medium text-foreground/80"
+                  >
                     Asunto
                   </label>
                   <Input
@@ -201,7 +220,10 @@ export default function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-foreground/80">
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium text-foreground/80"
+                  >
                     Mensaje
                   </label>
                   <Textarea
@@ -218,11 +240,14 @@ export default function Contact() {
 
                 <Button
                   type="submit"
-                  disabled={isLoading || sendMessageMutation.isPending}
+                  disabled={isLoading}
                   className="w-full bg-gradient-to-r from-blue-500 to-violet-500 hover:from-blue-600 hover:to-violet-600 text-white py-6 text-lg font-semibold rounded-lg group"
                 >
-                  {isLoading || sendMessageMutation.isPending ? 'Enviando...' : 'Enviar Mensaje'}
-                  <Send className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
+                  {isLoading ? "Enviando..." : "Enviar Mensaje"}{" "}
+                  <Send
+                    className="ml-2 group-hover:translate-x-1 transition-transform"
+                    size={20}
+                  />{" "}
                 </Button>
               </form>
             </motion.div>

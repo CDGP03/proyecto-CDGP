@@ -1,15 +1,15 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
-
+ 
 interface SocialLink {
   icon: React.ComponentType<{ size: number; className: string }>;
   href: string;
   label: string;
 }
-
+ 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
+ 
   const socialLinks: SocialLink[] = [
     {
       icon: Mail,
@@ -18,16 +18,16 @@ export default function Footer() {
     },
     {
       icon: Github,
-      href: 'https://github.com',
+      href: 'https://github.com/CDGP03',
       label: 'GitHub',
     },
     {
       icon: Linkedin,
-      href: 'https://linkedin.com',
+      href: 'https://www.linkedin.com/in/cristian-david-gonzalez-pillimue-05b2291b5',
       label: 'LinkedIn',
     },
   ];
-
+ 
   return (
     <footer className="border-t border-border/50 bg-card/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-12">
@@ -44,7 +44,7 @@ export default function Footer() {
               Desarrollador Full Stack & Analista de Software
             </p>
           </motion.div>
-
+ 
           {/* Social Links */}
           <div className="flex gap-6">
             {socialLinks.map((link, index) => {
@@ -66,10 +66,10 @@ export default function Footer() {
             })}
           </div>
         </div>
-
+ 
         {/* Divider */}
         <div className="my-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-
+ 
         {/* Copyright */}
         <div className="text-center text-foreground/60 text-sm">
           <p>
@@ -83,3 +83,4 @@ export default function Footer() {
     </footer>
   );
 }
+ 

@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Mail } from 'lucide-react';
-
+ 
 interface HeroProps {
   onContactClick: () => void;
   onPortfolioClick: () => void;
 }
-
+ 
 export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -18,7 +18,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
       },
     },
   };
-
+ 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -27,18 +27,14 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
       transition: { duration: 0.8 },
     },
   };
-
+ 
   return (
     <section
       id="inicio"
       className="min-h-screen flex items-center justify-center pt-20 pb-10 relative overflow-hidden"
     >
-      {/* Background gradient effect */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl opacity-20" />
-        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl opacity-20" />
-      </div>
-
+      {/* HexBackground ya provee el fondo — sin blobs redundantes */}
+ 
       <motion.div
         className="container mx-auto px-4 flex flex-col items-center text-center"
         variants={containerVariants}
@@ -58,7 +54,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
             />
           </div>
         </motion.div>
-
+ 
         {/* Name */}
         <motion.h1
           variants={itemVariants}
@@ -70,7 +66,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
             González Pillimue
           </span>
         </motion.h1>
-
+ 
         {/* Title */}
         <motion.p
           variants={itemVariants}
@@ -78,7 +74,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
         >
           Desarrollador Full Stack & Analista de Software
         </motion.p>
-
+ 
         {/* Description */}
         <motion.p
           variants={itemVariants}
@@ -86,7 +82,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
         >
           Especializado en desarrollo web moderno y análisis de datos. Transformo ideas en soluciones tecnológicas escalables y eficientes.
         </motion.p>
-
+ 
         {/* CTA Buttons */}
         <motion.div
           variants={itemVariants}
@@ -99,7 +95,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
             Ver Habilidades
             <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
           </Button>
-
+ 
           <Button
             onClick={onContactClick}
             variant="outline"
@@ -109,7 +105,7 @@ export default function Hero({ onContactClick, onPortfolioClick }: HeroProps) {
             Contactar
           </Button>
         </motion.div>
-
+ 
         {/* Scroll indicator */}
         <motion.div
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
